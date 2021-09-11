@@ -1,0 +1,220 @@
+@font-face{
+	font-family: "avenger";
+	src: url("Images/avenger.ttf")
+	
+	
+}
+
+@font-face{
+	font-family: "avenger1";
+	src: url("Images/avenger.ttf")
+	
+	
+}
+
+
+* {
+	box-sizing: border-box;
+}
+
+html
+{
+	min-height: 100vh;
+	cursor: url("Images/too686.cur") , auto ;
+}
+
+body {
+	margin: 0;
+	background: radial-gradient(#4169E1,#FF0000);
+	
+}
+
+.heading{
+	
+	color: black;
+	text-align: center;
+	font-size: 3em;
+	font-weight: normal;
+	font-family: avenger , serif; 
+}
+
+.game-info{
+	
+	font-family: avenger1 , serif;
+	font-size: 1.5em;
+	
+	
+}
+
+.game-info-container{
+	grid-column: 1/ -1;
+	display: flex;
+	justify-content: space-between;
+
+}
+
+
+.game-container{
+	display: grid;
+	grid-template-columns: repeat(4,auto);
+	grid-gap: 10px;
+	margin: 50px;
+	justify-content: center;
+	perspective: 500px;
+	
+}
+
+.card{
+	
+	height: 170px;
+	width: 115px;
+	position: relative;
+	
+	
+}
+
+.card:hover {
+
+	cursor: url("Images/Thor\'s\ Hammer.cur") , auto;
+}
+.card-face{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	backface-visibility: hidden;
+	border-radius: 12px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: cyan;
+	transition: transform 700ms ease-in-out;
+}
+
+
+.iron{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 170px;
+	width: 115px;
+	transform: scale(1);
+	transition: transform 100ms ease-in-out;
+	
+}
+
+.card-value{
+
+	transition: transform 100ms ease-in-out;
+	transform: scale(0.8);
+
+}
+
+
+.card-front{
+	transform: rotateY(180deg);
+	border-color: blue;
+}
+
+.card-back {
+
+	transform: rotateY(0);
+}
+
+.card-back:hover .iron{
+	
+	transform: scale(1.3);
+}
+
+.card-front:hover .card-value{
+	transform: scale(1);
+}
+
+.card.visible .card-back{
+	transform: rotateY(-180deg);
+}
+
+.card.visible .card-front{
+	transform: rotateY(0);
+}
+
+
+.card.matches .card-front .card-value{
+
+	animation: scaling 1s linear infinite 500ms;
+
+}
+
+@keyframes scaling{
+
+	0%, 100%{
+		transform: scale(1);
+
+	}
+	25% {
+		transform: scale(1.2);
+	}
+	50%{
+		transform: scale(1);
+	}
+	75%{
+		transform: scale(0.8);
+	}
+}
+
+
+
+
+.overlay-text {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 100;
+	display: none;
+	position: fixed;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	color: rgb(255, 72, 0);
+	font-family: Avenger, serif;
+	transition: background-color 500ms, font-size 500ms;
+  }
+  
+  
+  .overlay-text.visible {
+	display: flex;
+	flex-direction: column;
+	animation: overlay-grow 500ms forwards;
+  }
+  
+  
+@keyframes overlay-grow {
+	from {
+	  background-color: rgba(0, 0, 0, 0);
+	  font-size: 0;
+	}
+	to {
+	  background-color: rgba(0, 0, 0, .8);
+	  font-size: 4em;
+	}
+  }
+
+.over-text-small{
+
+	font-size: .3em;
+}
+
+
+@media (max-width: 600px) {
+	.game-container {
+	  grid-template-columns: repeat(2, auto)
+	}
+  
+	.game-info-container {
+	  flex-direction: column;
+	  align-items: center;
+	}
+  }
